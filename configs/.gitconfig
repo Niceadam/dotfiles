@@ -1,0 +1,33 @@
+[user]
+	name = Adam Asaad
+	email = adama@axis.com
+[color]
+	ui = auto
+[merge]
+	log = true
+  conflictstyle = diff3
+[diff "odf"]
+	textconv = odt2txt
+[core]
+	attributesfile = /usr/share/atools/gitattributes
+	gitproxy = axis-git-proxy
+  pager = delta
+	excludesFile = ~/.gitignore
+[push]
+	default = tracking
+[rebase]
+	autoSquash = true
+[init]
+	templatedir = /usr/share/ahooks/templates
+[axis "hooks"]
+	directory = /usr/share/ahooks/hooks.d
+	workingdirHooks = true
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  line-numbers = true
+[diff]
+  colorMoved = default
+[alias]
+	push-pre-branch = "!f() { b=$(sed -nre \"s#ref: refs/heads/(pre-)?(master$|special/|rel/|int/|dev/|topic/|fix/)#\\1\\2#p\" .git/HEAD 2>/dev/null) && [ \"$b\" ] && git push \"$@\" origin $b:pre-${b#pre-} || echo \"Not currently on a valid branch!\" >&2; }; f"
