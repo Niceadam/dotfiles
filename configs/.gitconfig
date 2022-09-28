@@ -1,0 +1,24 @@
+[core]
+	editor = nvim
+  pager = delta
+[user]
+	name = Niceadam
+	email = adam.asaad@proton.me
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[pull]
+	rebase = true
+
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true # use n and N to move between diff sections
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[push]
+	autoSetupRemote = true

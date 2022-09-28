@@ -1,0 +1,113 @@
+{
+  "tab_bar": {
+    "show": false,
+    "show_nav_history_buttons": false
+  },
+  "agent_servers": {
+    "OpenCode": {
+      "command": "opencode",
+      "args": ["acp"]
+    }
+  },
+  "use_smartcase_search": true,
+  "preview_tabs": {
+    "enabled": false
+  },
+  "title_bar": {
+    "show_user_picture": false,
+    "show_sign_in": false,
+    "show_branch_icon": false
+  },
+  "project_panel": {
+    "auto_reveal_entries": true,
+    "indent_size": 19.0,
+    "git_status": true,
+    "folder_icons": true,
+    "entry_spacing": "standard",
+    "default_width": 200.0
+  },
+  "terminal": {
+    "dock": "right",
+    "font_weight": 400.0,
+    "font_size": 14.0
+  },
+  "ui_font_weight": 350.0,
+  "context_servers": {
+    // "r2-mcp-server": {
+    //   "source": "custom",
+    //   "command": "r2pm",
+    //   "args": ["-r", "r2mcp"],
+    //   "env": {}
+    // },
+    "svelte-mcp": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {}
+    },
+    "mcp-server-context7": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {
+        "context7_api_key": ""
+      }
+    }
+  },
+  "agent": {
+    "always_allow_tool_actions": true,
+    "default_width": 740.0,
+    "default_profile": "write",
+    "enable_feedback": false,
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-5"
+    },
+    "model_parameters": []
+  },
+  "theme": "One Dark",
+  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "vertical_scroll_margin": 8,
+  "tab_size": 2,
+  "buffer_font_size": 13.0,
+  "buffer_font_weight": 300.0,
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "ui_font_size": 15,
+  "ui_font_family": "JetBrainsMono Nerd Font Propo",
+
+  "languages": {
+    "JavaScript": { "formatter": { "language_server": { "name": "biome" } } },
+    "TypeScript": { "formatter": { "language_server": { "name": "biome" } } },
+    "TSX": { "formatter": { "language_server": { "name": "biome" } } },
+    "JSON": { "formatter": { "language_server": { "name": "biome" } } },
+    "CSS": { "formatter": { "language_server": { "name": "biome" } } },
+    "Python": {
+      "language_servers": ["ty", "!basedpyright"]
+    }
+  },
+
+  "base_keymap": "JetBrains",
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "vim_mode": true,
+  "cursor_blink": false,
+  "tabs": {
+    "git_status": false,
+    "show_close_button": "hidden",
+    "file_icons": true
+  },
+  "git": {
+    "blame": {
+      "show_avatar": false
+    },
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "outline_panel": {
+    "button": false
+  }
+}

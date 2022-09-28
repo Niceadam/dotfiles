@@ -1,0 +1,60 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor || Terminal || MarkdownPreview",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "alt-d": "pane::CloseActiveItem",
+      "alt-left": "pane::ActivatePreviousItem",
+      "alt-right": "pane::ActivateNextItem"
+    }
+  },
+  {
+    "context": "VimControl",
+    "bindings": {
+      "space q": "zed::Quit",
+      "space f": "project_panel::ToggleFocus",
+      "space s": "workspace::Save",
+      "space p": "file_finder::Toggle",
+      "space e": "editor::Hover",
+      "space r": "editor::Rename",
+      "space k": "editor::OpenDocs",
+      "space g": "pane::DeploySearch",
+      "space l r": "editor::FindAllReferences",
+      "space l k": "editor::OpenDocs",
+      "space l d": "editor::GoToDefinition",
+      "space l D": "editor::GoToDeclaration",
+      "space l i": "editor::GoToImplementation"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "alt-1": null
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-u": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-i": "workspace::ToggleRightDock"
+    }
+  }
+]

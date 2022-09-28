@@ -1,0 +1,124 @@
+
+keybinds clear-defaults=true {
+    normal {
+        bind "Alt left" { MoveFocus "left"; }
+        bind "Alt down" { MoveFocus "down"; }
+        bind "Alt up" { MoveFocus "up"; }
+        bind "Alt right" { MoveFocus "right"; }
+        bind "Alt d" { CloseFocus; }
+        bind "Alt i" { GoToNextTab; }
+        bind "Alt u" { GoToPreviousTab; }
+        bind "Alt n" { NewPane; }
+        bind "Alt o" { NewTab; }
+    }
+    locked {
+        bind "Alt g" { SwitchToMode "normal"; }
+    }
+    resize {
+        bind "Alt r" { SwitchToMode "normal"; }
+        bind "left" { Resize "Increase left"; }
+        bind "down" { Resize "Increase down"; }
+        bind "up" { Resize "Increase up"; }
+        bind "right" { Resize "Increase right"; }
+    }
+    scroll {
+        bind "Alt s" { SwitchToMode "entersearch"; SearchInput 0; }
+    }
+    search {
+        bind "c" { SearchToggleOption "CaseSensitivity"; }
+        bind "n" { Search "down"; }
+        bind "o" { SearchToggleOption "WholeWord"; }
+        bind "p" { Search "up"; }
+        bind "w" { SearchToggleOption "Wrap"; }
+    }
+    shared_among "scroll" "search" {
+        bind "Alt s" { SwitchToMode "normal"; }
+        bind "up" { ScrollUp; }
+        bind "down" { ScrollDown; }
+        bind "u" { PageScrollUp; }
+        bind "d" { PageScrollDown; }
+    }
+
+    shared_except "locked" {
+        bind "Alt g" { SwitchToMode "locked"; }
+    }
+    shared_except "locked" "scroll" "search" {
+        bind "Alt s" { SwitchToMode "scroll"; }
+    }
+    shared_except "locked" "resize" {
+        bind "Alt r" { SwitchToMode "resize"; }
+    }
+    shared_except "normal" "locked" "entersearch" {
+        bind "enter" { SwitchToMode "normal"; }
+    }
+    shared_except "normal" "locked" "entersearch" {
+        bind "esc" { SwitchToMode "normal"; }
+    }
+    entersearch {
+        bind "esc" { SwitchToMode "scroll"; }
+        bind "enter" { SwitchToMode "search"; }
+    }
+}
+
+// Plugin aliases - can be used to change the implementation of Zellij
+// changing these requires a restart to take effect
+plugins {
+    about location="zellij:about"
+    compact-bar location="zellij:compact-bar"
+    configuration location="zellij:configuration"
+    plugin-manager location="zellij:plugin-manager"
+    session-manager location="zellij:session-manager"
+    status-bar location="zellij:status-bar"
+    tab-bar location="zellij:tab-bar"
+}
+
+default_layout "main"
+pane_frames false
+
+Default: "main"
+attach_to_session true
+auto_layout false
+session_serialization false
+show_startup_tips false
+
+
+themes {
+    main {
+        text_unselected {
+            base 204 204 204
+            background 26 26 25
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        ribbon_selected {
+            base 26 26 25
+            background 152 195 121
+            emphasis_0 190 80 70
+            emphasis_1 209 154 102
+            emphasis_2 198 120 221
+            emphasis_3 97 175 239
+        }
+        ribbon_unselected {
+            base 26 26 25
+            background 146 152 163
+            emphasis_0 190 80 70
+            emphasis_1 204 204 204
+            emphasis_2 97 175 239
+            emphasis_3 198 120 221
+        }
+        frame_selected {
+            base 152 195 121
+            background 152 195 121
+            emphasis_0 190 80 70
+            emphasis_1 209 154 102
+            emphasis_2 198 120 221
+            emphasis_3 97 175 239
+        }
+    }
+}
+
+
+// Choose the theme that is specified in the themes section.
+theme "main"

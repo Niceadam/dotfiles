@@ -1,0 +1,68 @@
+{
+  "agent": {
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-4.1"
+    },
+    "model_parameters": []
+  },
+  "theme": "One Dark",
+  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "vertical_scroll_margin": 8,
+  "tab_size": 2,
+  "buffer_font_size": 15,
+  "buffer_font_weight": 400,
+  "buffer_font_family": "Iosevka Nerd Font",
+  "ui_font_family": "Iosevka Nerd Font",
+
+  "languages": {
+    "JavaScript": { "formatter": { "language_server": { "name": "biome" } } },
+    "TypeScript": { "formatter": { "language_server": { "name": "biome" } } },
+    "JSX": { "formatter": { "language_server": { "name": "biome" } } },
+    "TSX": { "formatter": { "language_server": { "name": "biome" } } },
+    "JSON": { "formatter": { "language_server": { "name": "biome" } } },
+    "CSS": { "formatter": { "language_server": { "name": "biome" } } },
+    "Python": {
+      "language_servers": ["ruff", "ty"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.fixAll.ruff": true,
+            "source.organizeImports.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    }
+  },
+
+  "base_keymap": "JetBrains",
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "vim_mode": true,
+  "cursor_blink": false,
+  "tabs": {
+    "file_icons": true
+  },
+  "file_finder": {
+    "modal_max_width": "medium"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "outline_panel": {
+    "button": false
+  }
+}

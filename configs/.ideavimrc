@@ -1,0 +1,30 @@
+""" Plugins  --------------------------------
+set surround
+set commentary
+
+""" Common settings -------------------------
+set clipboard+=unnamedplus
+set showmode
+set scrolloff=8
+set scrolloff=8
+set incsearch
+set number
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+let mapleader=" "
+map <leader>o <Action>(FileStructurePopup)
+map <leader>s <Action>(SaveAll)
+map <A-d> <Action>(CloseEditor)
+
+""" LSP
+map <leader>g <Action>(SearchEverywhere)
+map <leader>e <Action>(ShowErrorDescription)
+map <leader>ll <Action>(RenameElement)
+map <leader>ld <Action>(GotoDeclaration)
+map <leader>li <Action>(GotoImplementation)
+map <leader>lk <Action>(QuickJavaDoc)
