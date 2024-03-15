@@ -7,8 +7,6 @@ alsa-utils
 amazon-ecr-credential-helper
 amd-ucode
 android-apktool
-android-sdk-build-tools
-android-tools
 android-udev
 ansible
 ansible-core
@@ -112,6 +110,7 @@ gnuplot
 google-chrome
 gparted
 gperf
+graphviz
 grep
 groff
 grub
@@ -132,16 +131,19 @@ hwinfo
 inetutils
 inkscape
 inxi
+ionic-cli
 iperf3
 iptables-nft
 iwd
 jadx
 jadx-gui-desktop
 jdk-openjdk
+jdk17-openjdk
 jfsutils
 jq
 kaf-bin
 kde-gtk-config
+kdenlive
 kdeplasma-addons
 keyd
 khotkeys
@@ -179,6 +181,7 @@ m4
 make
 man-db
 man-pages
+marp-cli-bin
 mdadm
 mesa-utils
 meson
@@ -260,7 +263,6 @@ riscv64-elf-newlib
 rp-pppoe
 rsync
 rustup
-scrcpy
 sd
 sddm
 sdl12-compat
@@ -330,5 +332,4 @@ xsel
 xsettingsd
 xterm
 yay
-zeronet
 zoom

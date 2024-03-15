@@ -15,10 +15,10 @@ set -x VISUAL /usr/bin/nvim
 set -x FZF_DEFAULT_OPTS "--info=inline"
 set -x FZF_DEFAULT_COMMAND "fd --type f --hidden"
 set -x ANDROID_HOME "/home/niceadam/.android"
-set -x GOPATH (go env GOPATH)
 
+fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
 fish_add_path $ANDROID_HOME/platform-tools
-fish_add_path $ANDROID_HOME/emulator
+
 fish_add_path $HOME/.cargo/bin
 fish_add_path (go env GOPATH)/bin
 
@@ -81,6 +81,10 @@ alias pss 'yay -Ss'
 
 alias inframox "open https://localhost:8006 && ssh -L 8006:localhost:8006 inframox"
 alias homemox "open https://localhost:8006 && ssh -L 8006:localhost:8006 homemox"
+
+function sshmox --argument-names remote
+  ssh debian@"$remote" -J homemox
+end
 
 function f --wraps nnn --description 'support nnn quit and change directory'
     # Block nesting of nnn in subshells
