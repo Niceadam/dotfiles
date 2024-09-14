@@ -1,5 +1,5 @@
 function fish_greeting
-    echo 'Welcome back, Niceadam'
+    echo 'Welcome back..'
 end
 
 function fish_prompt
@@ -14,11 +14,15 @@ set -x EDITOR /usr/bin/nvim
 set -x VISUAL /usr/bin/nvim
 set -x FZF_DEFAULT_OPTS "--info=inline"
 set -x FZF_DEFAULT_COMMAND "fd --type f --hidden"
-set -x ANDROID_HOME "/home/niceadam/.android"
+set -x ANDROID_HOME "$HOME/.android"
+set -x BUN_INSTALL "$HOME/.bun"
+set -x PNPM_HOME "$HOME/.local/share/pnpm"
 
 fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
 fish_add_path $ANDROID_HOME/platform-tools
 
+fish_add_path $BUN_INSTALL/bin
+fish_add_path $PNPM_HOME
 fish_add_path $HOME/.cargo/bin
 fish_add_path (go env GOPATH)/bin
 
@@ -45,15 +49,6 @@ function fs --argument-names folder
     end
 end
 
-# tmux: open new session from current directory
-function sesh
-    set -l base (basename $PWD)
-    if not tmux has-session -t=$base 2>/dev/null
-        tmux new -ds $base -c $PWD
-    end
-    tmux switch-client -t $base
-end
-
 # Aliases
 alias fishconfig "nvim ~/.config/fish/config.fish"
 alias sv "sudo -e"
@@ -65,13 +60,14 @@ alias gc 'git commit'
 alias gca 'git commit --amend'
 alias gp 'git push --force-with-lease'
 alias gst 'git status'
+alias gch 'git checkout'
 alias gbr 'git branch'
 alias gdf 'git diff'
 alias glg "\
 git log --graph --abbrev-commit --decorate \
 --format=format:'%C(bold blue)%h%C(reset) - \
 %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) \
-%C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+%C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' -12"
 
 # ls
 alias ls 'exa -1s type'
@@ -86,11 +82,12 @@ alias pu 'yay -Syu'
 alias pr 'yay -Rs'
 alias pss 'yay -Ss'
 
-alias nicemox "open https://localhost:8006 && ssh -L 8006:localhost:8006 nicemox"
+######### Theca ###########
 
-function sshmox --argument-names remote
-  ssh debian@"$remote" -J homemox
-end
+alias idea 'fish -c "~/theca/intellij/bin/idea &>/dev/null 2>&1 &"'
+alias thecamox 'open https://localhost:8006 && ssh -L 8006:localhost:8006 root@lab.theca.com -p 2222'
+
+###########################
 
 function f --wraps nnn --description 'support nnn quit and change directory'
     # Block nesting of nnn in subshells
@@ -103,17 +100,7 @@ function f --wraps nnn --description 'support nnn quit and change directory'
     # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
     # see. To cd on quit only on ^G, remove the "-x" from both lines below,
     # without changing the paths.
-    if test -n "$XDG_CONFIG_HOME"
-        set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
-    else
-        set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
-    end
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
+    set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
 
     # The command function allows one to alias this function to `nnn` without
     # making an infinitely recursive alias
@@ -125,31 +112,19 @@ function f --wraps nnn --description 'support nnn quit and change directory'
     end
 end
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /home/niceadam/miniconda3/bin/conda
-    eval /home/niceadam/miniconda3/bin/conda "shell.fish" hook $argv | source
-end
-# <<< conda initialize <<<
+# Uses the first conda installation found in the following list
+set -x CONDA_PATH /data/miniconda3/bin/conda $HOME/miniconda3/bin/conda
 
-# pnpm
-set -gx PNPM_HOME "/home/niceadam/.local/share/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $PATH $BUN_INSTALL/bin
-
-# fnm
-set -gx PATH "/run/user/1000/fnm_multishells/234042_1715254016261/bin" $PATH;
-set -gx FNM_COREPACK_ENABLED "false";
-set -gx FNM_MULTISHELL_PATH "/run/user/1000/fnm_multishells/234042_1715254016261";
-set -gx FNM_LOGLEVEL "info";
-set -gx FNM_RESOLVE_ENGINES "false";
-set -gx FNM_ARCH "x64";
-set -gx FNM_DIR "/home/niceadam/.local/share/fnm";
-set -gx FNM_VERSION_FILE_STRATEGY "local";
-set -gx FNM_NODE_DIST_MIRROR "https://nodejs.org/dist";
+function conda
+    echo "Lazy loading conda upon first invocation..."
+    functions --erase conda
+    for conda_path in $CONDA_PATH
+        if test -f $conda_path
+            echo "Using Conda installation found in $conda_path"
+            eval $conda_path "shell.fish" "hook" | source
+            conda $argv
+            return
+        end
+    end
+    echo "No conda installation found in $CONDA_PATH"
+end 

@@ -9,10 +9,11 @@ if $generate_or_install
     cp -r $conf/fish       configs
     cp -r $conf/alacritty  configs
     cp -r $conf/nvim       configs
-    cp $HOME/.gitconfig        configs
-    cp $HOME/.tmux.conf        configs
-    cp $HOME/.zshrc            configs
-    cp $HOME/.fdignore         configs
+    cp $HOME/.gitconfig    configs
+    cp $HOME/.tmux.conf    configs
+    cp $HOME/.zshrc        configs
+    cp $HOME/.fdignore     configs
+    cp $HOME/.ideavimrc    configs
     sudo cp -r /etc/keyd   configs
     echo "Generation done."
 else
@@ -25,6 +26,7 @@ else
     cp .tmux.conf          $HOME
     cp .zshrc              $HOME
     cp .fdignore           $HOME
+    cp .ideavimrc          $HOME
     sudo cp -r keyd        /etc
     echo "Insertion done."
 end

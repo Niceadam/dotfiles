@@ -17,7 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
   defaults = { lazy = true },
-  install = { colorscheme = { "gruvbox-material" } },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -32,7 +31,6 @@ require("lazy").setup("plugins", {
         "netrwFileHandlers",
         "matchit",
         "man",
-        "getscript",
         "tar",
         "tarPlugin",
         "rrhelper",

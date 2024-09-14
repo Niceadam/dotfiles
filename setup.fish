@@ -35,7 +35,6 @@ yay -S \
  nnn-nerd\
  npm\
  okular\
- pinta\
  qbittorrent\
  refind\
  ripgrep\
@@ -51,7 +50,7 @@ yay -S \
  wmctrl\
  ufw\
  unzip\
- xsel
+ wayclip
 
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 sudo ufw enable
@@ -75,6 +74,3 @@ chmod +x conda.sh
 # Icons: Tela manjoro dark
 # Night Light
 # Insert pub.key -> Github
-
-# Wails v2
-# go install github.com/wailsapp/wails/v2/cmd/wails@latest
