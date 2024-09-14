@@ -10,19 +10,22 @@ return {
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-cmdline",
-  "L3MON4D3/LuaSnip",
 
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
-  "onsails/lspkind-nvim",
 
-  { "sainnhe/gruvbox-material",                 lazy = false },
+  "rebelot/kanagawa.nvim",
   { "nvim-lualine/lualine.nvim",                lazy = false },
 
+  'stevearc/conform.nvim',
   "nvim-treesitter/nvim-treesitter",
   "windwp/nvim-autopairs",
   "windwp/nvim-ts-autotag",
-  "mfussenegger/nvim-dap",
-  "rcarriga/nvim-dap-ui",
+  "numToStr/Comment.nvim",
+
+  { 'Exafunction/codeium.vim',     event = 'BufEnter' },
+
+  "MunifTanjim/nui.nvim",
+  { "nvim-neo-tree/neo-tree.nvim", branch = "v3.x",   lazy = true }
 }

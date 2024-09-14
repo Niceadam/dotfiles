@@ -39,7 +39,4 @@ opt.shiftwidth = 2
 opt.tabstop = 2
 opt.smarttab = true
 
-vim.cmd("highlight SignColumn guibg=dark")                       -- Theme
-vim.cmd(":command TrimWhitespace %s/\\s\\+$//e")                 -- Remove trailing whitespace
-vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])      -- Auto-format
-vim.cmd([[autocmd BufNewFile,BufRead *.twig set filetype=html]]) -- *.twig => html
+vim.cmd(":command TrimWhitespace %s/\\s\\+$//e") -- Remove trailing whitespace

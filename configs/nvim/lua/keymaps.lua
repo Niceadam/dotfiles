@@ -40,12 +40,16 @@ keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
 -- LSP
 keymap("n", "<leader>ll", ":lua vim.lsp.buf.rename()<CR>", opts)
 keymap("n", "<leader>lr", ":lua require'telescope.builtin'.lsp_references()<CR>", opts)
-keymap("n", "<leader>ld", ":lua vim.lsp.buf.declaration()<CR>", opts)
+keymap("n", "<leader>ld", ":lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "<leader>li", ":lua vim.lsp.buf.implementation()<CR>", opts)
 keymap("n", "<leader>lk", ":lua vim.lsp.buf.hover()<CR>", opts)
 keymap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
+
+-- Neotree
+keymap("n", "<leader>t", ":Neotree reveal<CR>", opts)
 
 -- Harpoon
 keymap("n", "<leader>m", ":lua require('harpoon.mark').add_file()<CR>", opts)
 keymap("n", "<leader>h", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-keymap("n", "<leader>j", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
-keymap("n", "<leader>k", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
+keymap("n", "<leader>j", ":lua require('harpoon.ui').nav_prev()<CR>", opts)
+keymap("n", "<leader>k", ":lua require('harpoon.ui').nav_next()<CR>", opts)

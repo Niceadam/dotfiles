@@ -71,7 +71,7 @@ alias glg "\
 git log --graph --abbrev-commit --decorate \
 --format=format:'%C(bold blue)%h%C(reset) - \
 %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) \
-%C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+%C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all -10"
 
 # ls
 alias ls 'exa -1s type'
@@ -88,9 +88,22 @@ alias pss 'yay -Ss'
 
 alias nicemox "open https://localhost:8006 && ssh -L 8006:localhost:8006 nicemox"
 
-function sshmox --argument-names remote
-  ssh debian@"$remote" -J homemox
+## theca
+alias idea 'fish -c "~/theca/intellij/bin/idea &>/dev/null 2>&1 &"'
+
+function theca-login --description 'login to azure' --argument-names cluster
+  switch $cluster
+  case "prod"
+    echo "login to prod"
+    az aks get-credentials --resource-group Theca-RG-ProductionEnvironment --name Prod-WEU
+  case "test"
+    echo "login to test"
+    az aks get-credentials --resource-group Theca-RG-TestEnvironment --name Test
+  case "*"
+    az login
+  end
 end
+## theca end
 
 function f --wraps nnn --description 'support nnn quit and change directory'
     # Block nesting of nnn in subshells

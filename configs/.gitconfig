@@ -1,5 +1,6 @@
 [core]
 	editor = nvim
+  pager = delta
 [user]
 	name = Niceadam
 	email = adam.asaad76@gmail.com
@@ -10,3 +11,14 @@
 	smudge = git-lfs smudge -- %f
 [pull]
 	rebase = true
+
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true # use n and N to move between diff sections
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[push]
+	autoSetupRemote = true

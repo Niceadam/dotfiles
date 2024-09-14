@@ -1,6 +1,4 @@
 local _, cmp = pcall(require, "cmp")
--- local _, dap = pcall(require, "dap")
--- local _, dapui = pcall(require, "dapui")
 local _, devicons = pcall(require, "nvim-web-devicons")
 local _, lsp = pcall(require, "lspconfig")
 local _, lualine = pcall(require, "lualine")
@@ -10,6 +8,20 @@ local _, telescope = pcall(require, "telescope")
 local _, treesitter = pcall(require, "nvim-treesitter.configs")
 local _, autotag = pcall(require, "nvim-ts-autotag")
 local _, autopairs = pcall(require, "nvim-autopairs")
+local _, neotree = pcall(require, "neo-tree")
+local _, conform = pcall(require, "conform")
+local _, comment = pcall(require, "Comment")
+
+-- conform
+conform.setup({
+  format_on_save = {
+    timeout_ms = 4000,
+    lsp_format = "fallback",
+  },
+})
+
+-- Comment
+comment.setup()
 
 -- Autopairs & Autotag
 autotag.setup({
@@ -31,23 +43,18 @@ autopairs.setup({
 -- Treesitter
 treesitter.setup({
   auto_install = true,
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = { "php" },
-  }
+  highlight = { enable = true, },
+  indent = { enable = true, },
 })
 
 -- Colorscheme
-vim.opt.background = "dark"
-vim.g.gruvbox_material_background = "hard"
-vim.cmd.colorscheme("gruvbox-material")
+vim.cmd.colorscheme("kanagawa-wave")
 
 -- Lualine
 devicons.setup({})
 lualine.setup({
   options = {
+    disabled_filetypes = { "neo-tree" },
     section_separators = "",
   },
   sections = {
@@ -72,25 +79,13 @@ telescope.load_extension("fzf")
 -- Setup Mason and auto-install some LSPs
 -- Mason handles the actual installations,
 -- while mason-lspconfig does the automatation
--- and linking with neovim-lspconfig
-mason.setup({
-  providers = {
-    "mason.providers.client",
-    "mason.providers.registry-api",
-  },
-})
-
-masonlsp.setup({
-  automatic_installation = true,
-})
-
--- LSP servers
+-- and linking with novim-lspconfig
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+mason.setup()
+masonlsp.setup({ automatic_installation = true })
 masonlsp.setup_handlers({
   function(server)
-    lsp[server].setup({
-      capabilities = capabilities,
-    })
+    lsp[server].setup({ capabilities = capabilities })
   end,
 })
 
@@ -102,19 +97,34 @@ vim.diagnostic.config({
 })
 
 -- Gutter diagnostic signs
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = {
+  Error = "",
+  Warn = "",
+  Hint = "",
+  Info = ""
+}
+
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- Neotree
+neotree.setup({
+  filesystem = {
+    group_empty_dirs = true,
+    filtered_items = {
+      visible = true,
+      show_hidden_count = false,
+      hide_dotfiles = false,
+      hide_gitignored = false,
+      never_show = {},
+    }
+  }
+})
+
 -- CMP
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
   mapping = {
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<Down>"] = cmp.mapping.select_next_item(),
@@ -124,35 +134,12 @@ cmp.setup({
   window = {
     documentation = cmp.config.disable,
   },
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = require("lspkind").cmp_format({
-      mode = "symbol",
-      with_text = false,
-    }),
-  },
   sources = {
     { name = "nvim_lsp" },
     { name = "buffer" },
     { name = "path" },
-    { name = "luasnip" },
   },
   experimental = {
     ghost_text = true,
   },
 })
-
--- Debugging
--- dapui.setup({})
--- dap.adapters.lldb = {
--- 	type = "executable",
--- 	command = "/usr/bin/lldb-vscode",
--- 	name = "lldb",
--- }
--- dap.configurations.cpp = {
--- 	name = "Launch",
--- 	type = "lldb",
--- 	request = "launch",
--- }
--- dap.configurations.c = dap.configurations.cpp
--- dap.configurations.rust = dap.configurations.cpp
