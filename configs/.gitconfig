@@ -3,7 +3,7 @@
   pager = delta
 [user]
 	name = Niceadam
-	email = adam.asaad76@gmail.com
+	email = adam.asaad@proton.me
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true

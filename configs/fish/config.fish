@@ -18,8 +18,8 @@ set -x ANDROID_HOME "$HOME/.android"
 set -x BUN_INSTALL "$HOME/.bun"
 set -x PNPM_HOME "$HOME/.local/share/pnpm"
 
-fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
-fish_add_path $ANDROID_HOME/platform-tools
+#fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
+#fish_add_path $ANDROID_HOME/platform-tools
 
 fish_add_path $BUN_INSTALL/bin
 fish_add_path $PNPM_HOME
@@ -70,10 +70,10 @@ git log --graph --abbrev-commit --decorate \
 %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' -12"
 
 # ls
-alias ls 'exa -1s type'
-alias la 'exa -1as type'
-alias ll 'exa -ls type --git'
-alias tree 'exa --tree'
+alias ls 'eza -1s type'
+alias la 'eza -1as type'
+alias ll 'eza -ls type --git'
+alias tree 'eza --tree'
 alias rmd 'sudo rm -rfd'
 
 # pacman
@@ -82,10 +82,15 @@ alias pu 'yay -Syu'
 alias pr 'yay -Rs'
 alias pss 'yay -Ss'
 
+# LUKS
+alias cryptmount 'sudo cryptsetup luksOpen /dev/sdb NiceDrive && sudo mount /dev/mapper/NiceDrive /mnt'
+alias cryptunmount 'sudo umount /mnt && sudo cryptsetup luksClose NiceDrive'
+
 ######### Theca ###########
 
 alias idea 'fish -c "~/theca/intellij/bin/idea &>/dev/null 2>&1 &"'
 alias thecamox 'open https://localhost:8006 && ssh -L 8006:localhost:8006 root@lab.theca.com -p 2222'
+alias kctl 'kubectl'
 
 ###########################
 
@@ -128,3 +133,5 @@ function conda
     end
     echo "No conda installation found in $CONDA_PATH"
 end 
+
+fish_add_path -a /home/niceadam/.foundry/bin
