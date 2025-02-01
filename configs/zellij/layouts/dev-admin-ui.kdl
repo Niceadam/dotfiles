@@ -1,0 +1,16 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="compact-bar"
+    }
+    pane split_direction="vertical" {
+        pane command="./gradlew" {
+          cwd "$HOME/theca/theca-api"
+          args ":server:run"
+          focus true
+        }
+        pane command="./gradlew" {
+          cwd "$HOME/theca/theca-api"
+          args ":server:tailwindWatch"
+        }
+    }
+}

@@ -11,54 +11,63 @@ makepkg -si
 
 ## Packages
 yay -S \
- alacritty\
- base-devel\
- cmatrix\
- cuda\
- curl\
- docker\
- docker-compose\
- exa\
- fd\
- firefox\
- fish\
- fzf\
- git\
- go\
- gparted\
- htop\
- inkscape\
- jdk-openjdk\
- keyd\
- neofetch\
- neovim\
- nnn-nerd\
- npm\
- okular\
- qbittorrent\
- refind\
- ripgrep\
- rustup\
- tailscale\
- tldr\
- tmux\
- ttf-iosevka-nerd\
- vim\
- visual-studio-code-bin\
- vlc\
- wget\
- wmctrl\
- ufw\
- unzip\
- wayclip
+  age\
+  alacritty\
+  asciiquarium\
+  base-devel\
+  cmatrix\
+  cuda\
+  curl\
+  docker-compose\
+  docker\
+  exa\
+  fd\
+  firefox\
+  fish\
+  fzf\
+  git\
+  gnome-disk-utility\
+  go\
+  gparted\
+  htop\
+  inkscape\
+  jdk-openjdk\
+  keyd\
+  neofetch\
+  neovim\
+  nmap\
+  nnn-nerd\
+  nvidia-open\
+  nvidia-utilities\
+  okular\
+  pnpm\
+  qbittorrent\
+  refind\
+  ripgrep\
+  rustup\
+  tldr\
+  tor\
+  torbrowser-launcher\
+  ttf-iosevka-nerd\
+  ufw\
+  unzip\
+  visual-studio-code-bin\
+  vlc\
+  wayclip\
+  wget\
+  wmctrl\
+  yubico-authenticator-bin\
+  zellij
 
-curl -fsSL https://get.pnpm.io/install.sh | sh -
 sudo ufw enable
 sudo systemctl enable keyd
 sudo systemctl start keyd
 rustup default stable
-yay -S kdotool-git
-ssh-keygen
+yay -S kdotool-git brave-bin
+
+ssh-keygen -t ed25519
+# Change SSH keys in Github, Proxmox...
+
 refind-install
 
 # Miniconda

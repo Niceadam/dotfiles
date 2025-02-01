@@ -82,6 +82,10 @@ alias pu 'yay -Syu'
 alias pr 'yay -Rs'
 alias pss 'yay -Ss'
 
+# LUKS
+alias cryptmount 'sudo cryptsetup luksOpen /dev/sdb NiceDrive && sudo mount /dev/mapper/NiceDrive /mnt'
+alias cryptunmount 'sudo umount /mnt && sudo cryptsetup luksClose NiceDrive'
+
 ######### Theca ###########
 
 alias idea 'fish -c "~/theca/intellij/bin/idea &>/dev/null 2>&1 &"'
