@@ -9,6 +9,7 @@ if $generate_or_install
     cp -r $conf/fish      configs
     cp -r $conf/alacritty configs
     cp -r $conf/nvim      configs
+    cp -r $conf/zed       configs
     cp -r $conf/zellij    configs
     cp $HOME/.gitconfig   configs
     cp $HOME/.fdignore    configs
@@ -21,6 +22,7 @@ else
     cp -r fish      $conf
     cp -r alacritty $conf
     cp -r nvim      $conf
+    cp -r zed       $conf
     cp -r zellij    $conf
     cp .gitconfig   $HOME
     cp .fdignore    $HOME

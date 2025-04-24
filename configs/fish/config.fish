@@ -89,7 +89,6 @@ alias cryptunmount 'sudo umount /mnt && sudo cryptsetup luksClose NiceDrive'
 ######### Theca ###########
 
 alias idea 'fish -c "~/theca/intellij/bin/idea &>/dev/null 2>&1 &"'
-alias thecamox 'open https://localhost:8006 && ssh -L 8006:localhost:8006 root@lab.theca.com -p 2222'
 alias kctl 'kubectl'
 
 ###########################

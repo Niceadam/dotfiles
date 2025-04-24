@@ -52,12 +52,12 @@ yay -S \
   ttf-iosevka-nerd\
   ufw\
   unzip\
-  visual-studio-code-bin\
   vlc\
   wayclip\
   wget\
   wmctrl\
   yubico-authenticator-bin\
+  zed\
   zellij
 
 sudo ufw enable

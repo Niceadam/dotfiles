@@ -1,4 +1,3 @@
-local _, cmp = pcall(require, "cmp")
 local _, devicons = pcall(require, "nvim-web-devicons")
 local _, lsp = pcall(require, "lspconfig")
 local _, lualine = pcall(require, "lualine")
@@ -74,18 +73,8 @@ telescope.setup({
 })
 telescope.load_extension("fzf")
 
--- Setup Mason and auto-install some LSPs
--- Mason handles the actual installations,
--- while mason-lspconfig does the automatation
--- and linking with novim-lspconfig
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason.setup()
 masonlsp.setup({ automatic_installation = true })
-masonlsp.setup_handlers({
-  function(server)
-    lsp[server].setup({ capabilities = capabilities })
-  end,
-})
 
 -- Diagnostic settings
 vim.diagnostic.config({
@@ -99,25 +88,4 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.INFO] = ""
     }
   }
-})
-
--- CMP
-cmp.setup({
-  mapping = {
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<Down>"] = cmp.mapping.select_next_item(),
-    ["<Up>"] = cmp.mapping.select_prev_item(),
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
-  },
-  window = {
-    documentation = cmp.config.disable,
-  },
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "buffer" },
-    { name = "path" },
-  },
-  experimental = {
-    ghost_text = true,
-  },
 })

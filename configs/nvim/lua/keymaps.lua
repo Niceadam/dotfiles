@@ -44,9 +44,3 @@ keymap("n", "<leader>ld", ":lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "<leader>li", ":lua vim.lsp.buf.implementation()<CR>", opts)
 keymap("n", "<leader>lk", ":lua vim.lsp.buf.hover()<CR>", opts)
 keymap("n", "<leader>e", ":lua vim.diagnostic.open_float()<CR>", opts)
-
--- Harpoon
-keymap("n", "<leader>m", ":lua require('harpoon.mark').add_file()<CR>", opts)
-keymap("n", "<leader>h", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-keymap("n", "<leader>j", ":lua require('harpoon.ui').nav_prev()<CR>", opts)
-keymap("n", "<leader>k", ":lua require('harpoon.ui').nav_next()<CR>", opts)
