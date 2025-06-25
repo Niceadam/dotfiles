@@ -21,10 +21,12 @@ set -x PNPM_HOME "$HOME/.local/share/pnpm"
 #fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
 #fish_add_path $ANDROID_HOME/platform-tools
 
+fish_add_path /opt/cuda/bin
 fish_add_path $BUN_INSTALL/bin
 fish_add_path $PNPM_HOME
 fish_add_path $HOME/.cargo/bin
 fish_add_path (go env GOPATH)/bin
+fish_add_path -a $HOME/.foundry/bin
 
 # fzf: search directory from given directory and CD to it, defaults to CWD
 function ds --argument-names folder
@@ -83,13 +85,11 @@ alias pr 'yay -Rs'
 alias pss 'yay -Ss'
 
 # LUKS
-alias cryptmount 'sudo cryptsetup luksOpen /dev/sdb NiceDrive && sudo mount /dev/mapper/NiceDrive /mnt'
-alias cryptunmount 'sudo umount /mnt && sudo cryptsetup luksClose NiceDrive'
+alias cryptmount 'sudo cryptsetup luksOpen /dev/sda nicedrive && sudo mount /dev/mapper/nicedrive /mnt'
+alias cryptunmount 'sudo umount /mnt && sudo cryptsetup luksClose nicedrive'
 
-######### Theca ###########
-
+# Intellij
 alias idea 'fish -c "~/theca/intellij/bin/idea &>/dev/null 2>&1 &"'
-alias kctl 'kubectl'
 
 ###########################
 
@@ -116,21 +116,4 @@ function f --wraps nnn --description 'support nnn quit and change directory'
     end
 end
 
-# Uses the first conda installation found in the following list
-set -x CONDA_PATH /data/miniconda3/bin/conda $HOME/miniconda3/bin/conda
-
-function conda
-    echo "Lazy loading conda upon first invocation..."
-    functions --erase conda
-    for conda_path in $CONDA_PATH
-        if test -f $conda_path
-            echo "Using Conda installation found in $conda_path"
-            eval $conda_path "shell.fish" "hook" | source
-            conda $argv
-            return
-        end
-    end
-    echo "No conda installation found in $CONDA_PATH"
-end 
-
-fish_add_path -a /home/niceadam/.foundry/bin
+zoxide init fish | source

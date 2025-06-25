@@ -1,19 +1,43 @@
 return {
-  "kyazdani42/nvim-web-devicons",
-  "nvim-lua/plenary.nvim",
-  "nvim-telescope/telescope.nvim",
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  {
+    "rebelot/kanagawa.nvim",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("kanagawa-wave")
+    end,
+  },
 
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "neovim/nvim-lspconfig",
+  { "nvim-mini/mini.icons",      opts = {} },
+  { "nvim-mini/mini.completion", opts = {} },
+  { 'nvim-mini/mini.pairs',      opts = {} },
+  { "nvim-mini/mini.statusline", opts = {} },
+  { "nvim-mini/mini.pick",       opts = {} },
 
-  "rebelot/kanagawa.nvim",
-  { "nvim-lualine/lualine.nvim",                lazy = false },
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      format_on_save = {
+        timeout_ms = 4000,
+        lsp_format = "fallback",
+      },
+    }
+  },
 
-  'stevearc/conform.nvim',
-  "nvim-treesitter/nvim-treesitter",
-  "windwp/nvim-autopairs",
-  "windwp/nvim-ts-autotag",
-  "numToStr/Comment.nvim",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      auto_install = true,
+      highlight = { enable = true, },
+      indent = { enable = true, },
+    }
+  },
+
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig"
+    },
+  }
 }

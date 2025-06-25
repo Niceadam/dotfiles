@@ -5,11 +5,9 @@ keybinds clear-defaults=true {
         bind "Alt down" { MoveFocus "down"; }
         bind "Alt up" { MoveFocus "up"; }
         bind "Alt right" { MoveFocus "right"; }
-        bind "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt =" { Resize "Increase"; }
         bind "Alt d" { CloseFocus; }
         bind "Alt i" { GoToNextTab; }
+        bind "Alt u" { GoToPreviousTab; }
         bind "Alt n" { NewPane; }
         bind "Alt o" { NewTab; }
         bind "Alt s" {
@@ -19,12 +17,12 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
-        bind "Alt u" { GoToPreviousTab; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
     }
     pane {
+        bind "Ctrl p" { SwitchToMode "normal"; }
         bind "left" { MoveFocus "left"; }
         bind "down" { MoveFocus "down"; }
         bind "up" { MoveFocus "up"; }
@@ -36,12 +34,12 @@ keybinds clear-defaults=true {
         bind "j" { NewPane "down"; SwitchToMode "normal"; }
         bind "n" { NewPane; SwitchToMode "normal"; }
         bind "p" { SwitchFocus; }
-        bind "Ctrl p" { SwitchToMode "normal"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "normal"; }
         bind "x" { CloseFocus; SwitchToMode "normal"; }
         bind "z" { TogglePaneFrames; SwitchToMode "normal"; }
     }
     resize {
+        bind "Ctrl n" { SwitchToMode "normal"; }
         bind "left" { Resize "Increase left"; }
         bind "down" { Resize "Increase down"; }
         bind "up" { Resize "Increase up"; }
@@ -57,7 +55,6 @@ keybinds clear-defaults=true {
         bind "j" { Resize "Increase down"; }
         bind "k" { Resize "Increase up"; }
         bind "l" { Resize "Increase right"; }
-        bind "Ctrl n" { SwitchToMode "normal"; }
     }
     scroll {
         bind "e" { EditScrollback; SwitchToMode "normal"; }
@@ -89,6 +86,7 @@ keybinds clear-defaults=true {
         bind "esc" { SwitchToMode "normal"; }
     }
     shared_among "scroll" "search" {
+        bind "Ctrl s" { SwitchToMode "normal"; }
         bind "PageDown" { PageScrollDown; }
         bind "PageUp" { PageScrollUp; }
         bind "left" { PageScrollUp; }
@@ -103,7 +101,6 @@ keybinds clear-defaults=true {
         bind "j" { ScrollDown; }
         bind "k" { ScrollUp; }
         bind "l" { PageScrollDown; }
-        bind "Ctrl s" { SwitchToMode "normal"; }
         bind "u" { HalfPageScrollUp; }
     }
     entersearch {
@@ -153,11 +150,6 @@ load_plugins {
 //   - false (Default)
 //
 simplified_ui false
-
-// Choose the theme that is specified in the themes section.
-// Default: default
-//
-theme "catppucccin-mocha"
 
 // Choose the base input mode of zellij.
 // Default: normal
@@ -263,7 +255,7 @@ pane_frames false
 // A fixed name to always give the Zellij session.
 // Consider also setting `attach_to_session true,`
 // otherwise this will error if such a session exists.
-// Default: <RANDOM>
+Default: "main"
 //
 // session_name "My singleton session"
 
@@ -271,7 +263,7 @@ pane_frames false
 // if it is already running or creates it otherwise.
 // Default: false
 //
-// attach_to_session true
+attach_to_session true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -338,3 +330,130 @@ show_startup_tips false
 // Default: true
 //
 // show_release_notes false
+
+
+themes {
+    main {
+        text_unselected {
+            base 204 204 204
+            background 29 32 37
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        text_selected {
+            base 204 204 204
+            background 29 32 37
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        ribbon_selected {
+            base 29 32 37
+            background 152 195 121
+            emphasis_0 190 80 70
+            emphasis_1 209 154 102
+            emphasis_2 198 120 221
+            emphasis_3 97 175 239
+        }
+        ribbon_unselected {
+            base 29 32 37
+            background 146 152 163
+            emphasis_0 190 80 70
+            emphasis_1 204 204 204
+            emphasis_2 97 175 239
+            emphasis_3 198 120 221
+        }
+        table_title {
+            base 152 195 121
+            background 0
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        table_cell_selected {
+            base 204 204 204
+            background 40 44 52
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        table_cell_unselected {
+            base 204 204 204
+            background 29 32 37
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        list_selected {
+            base 204 204 204
+            background 40 44 52
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        list_unselected {
+            base 204 204 204
+            background 29 32 37
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 152 195 121
+            emphasis_3 198 120 221
+        }
+        frame_selected {
+            base 152 195 121
+            background 0
+            emphasis_0 209 154 102
+            emphasis_1 86 182 194
+            emphasis_2 198 120 221
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 209 154 102
+            background 0
+            emphasis_0 198 120 221
+            emphasis_1 209 154 102
+            emphasis_2 209 154 102
+            emphasis_3 209 154 102
+        }
+        exit_code_success {
+            base 152 195 121
+            background 0
+            emphasis_0 86 182 194
+            emphasis_1 29 32 37
+            emphasis_2 198 120 221
+            emphasis_3 97 175 239
+        }
+        exit_code_error {
+            base 190 80 70
+            background 0
+            emphasis_0 229 192 123
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 198 120 221
+            player_2 97 175 239
+            player_3 0
+            player_4 229 192 123
+            player_5 86 182 194
+            player_6 0
+            player_7 190 80 70
+            player_8 0
+            player_9 0
+            player_10 0
+        }
+    }
+}
+
+
+// Choose the theme that is specified in the themes section.
+theme "main"
+
